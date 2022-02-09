@@ -1,32 +1,36 @@
 import MoviesInput from "../Component/MoviesInput/MoviesInput";
 import { useEffect, useState } from "react";
 import * as searchMovie from "../services/api";
-import { Link, Outlet } from "react-router-dom";
+import { Outlet, useSearchParams } from "react-router-dom";
+import ListMovies from "../Component/ListMovies/ListMovies";
 
 export default function MoviesView() {
   const [nameMovie, setNameMovie] = useState("");
   const [movies, setMovies] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const submitName = (movie) => {
     setNameMovie(movie);
+    setSearchParams({ movie });
   };
+
+  const searchQuery = searchParams.get("movie");
   useEffect(() => {
-    searchMovie.fetchsearchMovies(nameMovie).then(setMovies);
+    if (searchQuery) {
+      searchMovie
+        .fetchsearchMovies(searchQuery)
+        .then(setMovies)
+        .catch((er) => {
+          alert(er);
+        });
+    }
   }, [nameMovie]);
 
   return (
     <>
       <Outlet />
       <MoviesInput submitName={submitName} />
-
-      {movies &&
-        movies.results.map((movie) => (
-          <li key={movie.id}>
-            <Link to={`/movies/${movie.id}`}>
-              {movie.name ? movie.name : movie.title}
-            </Link>
-          </li>
-        ))}
+      {movies && <ListMovies movies={movies} />}
     </>
   );
 }

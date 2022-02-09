@@ -5,8 +5,8 @@ import { Route, Routes, Navigate } from "react-router-dom";
 
 const Navigation = lazy(() => import("./Component/Navigation/Navigation"));
 const MoviesOutles = lazy(() => import("./Component/Movies/Movies"));
-const Reviews = lazy(() => import("./views/ReviewsView"));
-const Cast = lazy(() => import("./views/CastSubView"));
+const Reviews = lazy(() => import("./Component/ReviewsView/ReviewsView"));
+const Cast = lazy(() => import("./Component/CastSubView/CastSubView"));
 const MoviesDetailsView = lazy(() => import("./views/MoviesDetailsView"));
 const MoviesView = lazy(() => import("./views/MoviesView"));
 const HomeView = lazy(() => import("./views/HomeView"));

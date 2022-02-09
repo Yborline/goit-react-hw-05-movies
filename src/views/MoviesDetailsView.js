@@ -12,21 +12,22 @@ import * as moviesTrendAPI from "../services/api";
 
 export default function MoviesDetailsView() {
   const { id } = useParams();
-  const [fromPage, setFromPage] = useState(null);
   const [movie, setMovie] = useState(null);
-  const params = useParams();
+  const [fromPage, setFromPage] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
 
-  console.log(params);
   useEffect(() => {
     setFromPage(location.state?.from || "/");
-    moviesTrendAPI.fetchOneMovies(id).then((movie) => {
-      setMovie(movie);
-    });
+    moviesTrendAPI
+      .fetchOneMovies(id)
+      .then((movie) => {
+        setMovie(movie);
+      })
+      .catch((er) => {
+        alert(`${er}`);
+      });
   }, [id]);
-
-  console.log(movie);
 
   const handleClick = () => {
     navigate(fromPage);

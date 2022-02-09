@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import * as movieApiService from "../services/api";
-import Spiner from "../Component/Spinner/Spinner";
+import * as movieApiService from "../../services/api";
+import Spiner from "../Spinner/Spinner";
 import { toast } from "react-toastify";
 
 const noImgSrc =

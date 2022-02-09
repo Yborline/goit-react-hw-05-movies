@@ -14,6 +14,7 @@ export default function MoviesInput({ submitName }) {
       alert("Введите название");
       return;
     }
+    setName("");
   };
 
   return (
@@ -30,3 +31,22 @@ export default function MoviesInput({ submitName }) {
     </>
   );
 }
+
+// const changeInput = (event) => {
+//   const { value } = event.target;
+//   setName(value.toLowerCase());
+// };
+// const handleSubmit = (e) => {
+//   e.preventDefault();
+//   if (searchParams.length === 0) {
+//     setSearchParams({ name });
+//   }
+
+//   submitName(searchParams);
+
+//   if (name.trim() === "") {
+//     alert("Введите название");
+//     return;
+//   }
+// };
+// console.log(searchParams);

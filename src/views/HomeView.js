@@ -1,14 +1,19 @@
-import { format } from "prettier";
 import TrendingToday from "../Component/TrendingToday/TrendingToday";
 import * as moviesTrendAPI from "../services/api";
 import { useState, useEffect } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import ListMovies from "../Component/ListMovies/ListMovies";
 
 export default function Homeview() {
   const [movies, setMovies] = useState(null);
 
   useEffect(() => {
-    moviesTrendAPI.fetchMovies().then(setMovies);
+    moviesTrendAPI
+      .fetchMovies()
+      .then(setMovies)
+      .catch((er) => {
+        alert(`${er}`);
+      });
   }, []);
 
   return (
@@ -16,14 +21,7 @@ export default function Homeview() {
       <Outlet />
       <TrendingToday text="Trending Today" />
 
-      {movies &&
-        movies.results.map((movie) => (
-          <li key={movie.id}>
-            <Link to={`/movies/${movie.id}`}>
-              {movie.name ? movie.name : movie.title}
-            </Link>
-          </li>
-        ))}
+      {movies && <ListMovies movies={movies} />}
     </>
   );
 }

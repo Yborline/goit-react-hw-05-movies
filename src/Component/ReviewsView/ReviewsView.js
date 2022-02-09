@@ -1,6 +1,6 @@
 import { useParams, Outlet } from "react-router-dom";
 import { useState, useEffect } from "react";
-import * as ReviewsFetch from "../services/api";
+import * as ReviewsFetch from "../../services/api";
 
 function Reviews() {
   const [reviews, setReviews] = useState("");

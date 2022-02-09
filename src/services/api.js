@@ -34,7 +34,7 @@ export function fetchReviews(id) {
 
 export function fetchsearchMovies(movies) {
   return fetchWithErrorHandling(
-    `${BASE_URL}/3/search/movie?api_key=${KEY}&language=en-US&query=${movies}&page=1&include_adult=false
+    `${BASE_URL}/3/search/movie?&api_key=${KEY}&language=en-US&query=${movies}&page=1&include_adult=false&
     `
   );
 }
